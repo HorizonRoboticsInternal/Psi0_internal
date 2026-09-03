@@ -1,0 +1,1592 @@
+Training with 8 GPUs
+Tasks: G1WholebodyBendHandoverTeleop-v0 G1WholebodyBendPickMP-v0 G1WholebodyBendPickTeleop-v0 G1WholebodyCloseDoorTeleop-v0 G1WholebodyHandoverTeleop-v0 G1WholebodyLocomotionPickBetweenTablesTeleop-v0 G1WholebodyOpenFaucetTeleop-v0 G1WholebodyOpenOvenTeleop-v0 G1WholebodyOpenTrashCanTeleop-v0 G1WholebodyPickAndPlaceAndHugContainerTeleop-v0 G1WholebodyPushOfficeChairTeleop-v0 G1WholebodyTabletopGraspMP-v0 G1WholebodyXMoveBendPickTeleop-v0 G1WholebodyXMovePickTeleop-v0
+Experiment name: simple-14tasks
+[23:50:32 09/02] INFO     | >> [*] === Environment Variables ===    train.py:336
+                 INFO     | >> [*] OMP_NUM_THREADS: 32              train.py:346
+                 INFO     | >> [*] HF_HOME:                         train.py:346
+                          /mnt/nas26/kerou.zhang/robotics/Psi0/cach             
+                          e                                                     
+                 INFO     | >> [*] TORCH_HOME:                      train.py:346
+                          /mnt/nas26/kerou.zhang/robotics/Psi0/cach             
+                          e                                                     
+                 INFO     | >> [*] HF_TOKEN:                        train.py:346
+                 INFO     | >> [*] HF_LEROBOT_HOME:                 train.py:346
+                          /mnt/nas26/kerou.zhang/robotics/Psi0/data             
+                          /lerobot                                              
+                 INFO     | >> [*] DATA_HOME:                       train.py:346
+                          /mnt/nas26/kerou.zhang/robotics/Psi0/data             
+                 INFO     | >> [*] UV_CACHE_DIR:                    train.py:346
+                          /mnt/nas26/kerou.zhang/robotics/Psi0/cach             
+                          e                                                     
+                 INFO     | >> [*] WANDB_API_KEY:                   train.py:346
+                 INFO     | >> [*]                                  train.py:346
+                          PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION:               
+                          python                                                
+                 INFO     | >> [*] CUDA_VISIBLE_DEVICES:            train.py:346
+                          0,1,2,3,4,5,6,7                                       
+                 INFO     | >> [*] WORLD_SIZE: 8                    train.py:346
+                 INFO     | >> [*] LOCAL_WORLD_SIZE: 8              train.py:346
+                 INFO     | >> [*] RANK: 0                          train.py:346
+                 INFO     | >> [*] LOCAL_RANK: 0                    train.py:346
+                 INFO     | >> [*] MASTER_ADDR: 127.0.0.1           train.py:346
+                 INFO     | >> [*] MASTER_PORT: 29500               train.py:346
+                 INFO     | >> [*] Parsing configuration...         train.py:352
+[23:50:35 09/02] INFO     | >> [*] Config parsing took 2.58s        train.py:364
+[23:50:38 09/02] INFO     | >> [*] Seed everything with 292285      train.py:174
+[23:50:41 09/02] INFO     | >> [*] Initialize models ...            train.py:178
+[23:50:47 09/02] INFO     | >> [*] Load pretrained VLM model from finetune.py:98
+                          /mnt/nas26/kun.li/Psi0/models/psi-model               
+                          /psi0/pre.fast.1by1.2601091803.ckpt.ego               
+                          200k.he30k                                            
+[23:50:54 09/02] INFO     | >> [*] Total ActionTransformerModel     psi0.py:1510
+                          parameters: 497,719,256                               
+                 INFO     | >> [*] Total VLM Backbone parameters:   psi0.py:1514
+                          2,131,333,120                                         
+[23:50:56 09/02] INFO     | >> [*] Loading pretrained action     finetune.py:129
+                          header from                                           
+                          /mnt/nas26/kun.li/Psi0/models/psi-mode                
+                          l/psi0/postpre.1by1.pad36.2601131206.c                
+                          kpt.he30k                                             
+[23:50:59 09/02] WARNING  | >> [*] action header size mismatch,  finetune.py:131
+                          only loaded transformer blocks.                       
+                 INFO     | >> [*] loaded pretrained action      finetune.py:134
+                          header successfully.                                  
+                 INFO     | >> [*] VLM parameters are frozen     finetune.py:147
+                          (tune_vlm=False)                                      
+                 INFO     | >> [*] Model has 490,039,128         finetune.py:159
+                          trainable parameters                                  
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /home/users/kerou.zhang/.netrc.
+wandb: Currently logged in as: kerouzhanghorizon (kerouzhanghorizon-horizon) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+[23:51:01 09/02] INFO     | >> PyTorch version 2.7.0 available.     config.py:54
+[23:51:01 09/02] INFO     | >> PyTorch version 2.7.0 available.     config.py:54
+wandb: setting up run ho96ofe6
+wandb: Tracking run with wandb version 0.25.0
+wandb: Run data is saved locally in /mnt/nas26/kerou.zhang/robotics/Psi0/.runs/finetune/simple-14tasks.simple.flow1000.cosine.lr1.0e-04.b128.gpus8.2609022350/wandb/run-20260902_235100-ho96ofe6
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run simple-14tasks.simple.flow1000.cosine.lr1.0e-04.b128.gpus8.2609022350
+wandb: ⭐️ View project at https://wandb.ai/kerouzhanghorizon-horizon/psi
+wandb: 🚀 View run at https://wandb.ai/kerouzhanghorizon-horizon/psi/runs/ho96ofe6
+[23:51:02 09/02] INFO     | >> [*] Saved configuration to           train.py:128
+                          .runs/finetune/simple-14tasks.simple.flow             
+                          1000.cosine.lr1.0e-04.b128.gpus8.26090223             
+                          50                                                    
+                 INFO     | >> [*] Training configurations:         train.py:181
+                 INFO     | >>     |=> training task: 'finetune'    train.py:182
+                 INFO     | >>     |=> run name:                    train.py:183
+                          simple-14tasks.simple.flow1000.cosine.lr1             
+                          .0e-04.b128.gpus8.2609022350                          
+                 INFO     | >>     |=> seed: 292285                 train.py:184
+                 INFO     | >>     |=> mixed precision:             train.py:185
+                          torch.bfloat16                                        
+                 INFO     | >>     |=> warmup steps: 1000           train.py:186
+                 INFO     | >>     |=> validation steps: 500        train.py:187
+                 INFO     | >>     |=> checkpoint steps: 10000      train.py:188
+                 INFO     | >>     |=> max gradient norm: 1.0       train.py:189
+[23:51:03 09/02] INFO     | >> PyTorch version 2.7.0 available.     config.py:54
+[23:51:05 09/02] INFO     | >> PyTorch version 2.7.0 available.     config.py:54
+[23:51:09 09/02] INFO     | >> PyTorch version 2.7.0 available.     config.py:54
+[23:51:09 09/02] INFO     | >> PyTorch version 2.7.0 available.     config.py:54
+[23:51:09 09/02] INFO     | >> PyTorch version 2.7.0 available.     config.py:54
+[23:51:09 09/02] INFO     | >> PyTorch version 2.7.0 available.     config.py:54
+[23:51:14 09/02] WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendHandoverTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickMP-v0 were                         
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyCloseDoorTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyHandoverTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyLocomotionPickBetwe                        
+                          enTablesTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenFaucetTeleop-v0                        
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenOvenTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenTrashCanTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPickAndPlaceAndHugC                        
+                          ontainerTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPushOfficeChairTele                        
+                          op-v0 were disabled as they                           
+                          are not contained in all the                          
+                          other datasets.                                       
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyTabletopGraspMP-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMoveBendPickTeleop                        
+                          -v0 were disabled as they are                         
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMovePickTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+[23:51:14 09/02] WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendHandoverTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickMP-v0 were                         
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyCloseDoorTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyHandoverTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyLocomotionPickBetwe                        
+                          enTablesTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenFaucetTeleop-v0                        
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenOvenTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenTrashCanTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPickAndPlaceAndHugC                        
+                          ontainerTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPushOfficeChairTele                        
+                          op-v0 were disabled as they                           
+                          are not contained in all the                          
+                          other datasets.                                       
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyTabletopGraspMP-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMoveBendPickTeleop                        
+                          -v0 were disabled as they are                         
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMovePickTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+[23:51:14 09/02] WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendHandoverTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickMP-v0 were                         
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyCloseDoorTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyHandoverTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyLocomotionPickBetwe                        
+                          enTablesTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenFaucetTeleop-v0                        
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenOvenTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenTrashCanTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPickAndPlaceAndHugC                        
+                          ontainerTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPushOfficeChairTele                        
+                          op-v0 were disabled as they                           
+                          are not contained in all the                          
+                          other datasets.                                       
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyTabletopGraspMP-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMoveBendPickTeleop                        
+                          -v0 were disabled as they are                         
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMovePickTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+[23:51:15 09/02] WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendHandoverTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickMP-v0 were                         
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyCloseDoorTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyHandoverTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyLocomotionPickBetwe                        
+                          enTablesTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenFaucetTeleop-v0                        
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenOvenTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenTrashCanTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPickAndPlaceAndHugC                        
+                          ontainerTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPushOfficeChairTele                        
+                          op-v0 were disabled as they                           
+                          are not contained in all the                          
+                          other datasets.                                       
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyTabletopGraspMP-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMoveBendPickTeleop                        
+                          -v0 were disabled as they are                         
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMovePickTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+[23:51:16 09/02] WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendHandoverTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickMP-v0 were                         
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyCloseDoorTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyHandoverTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyLocomotionPickBetwe                        
+                          enTablesTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenFaucetTeleop-v0                        
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenOvenTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenTrashCanTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPickAndPlaceAndHugC                        
+                          ontainerTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPushOfficeChairTele                        
+                          op-v0 were disabled as they                           
+                          are not contained in all the                          
+                          other datasets.                                       
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyTabletopGraspMP-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMoveBendPickTeleop                        
+                          -v0 were disabled as they are                         
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMovePickTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+[23:51:16 09/02] WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendHandoverTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickMP-v0 were                         
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyCloseDoorTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyHandoverTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyLocomotionPickBetwe                        
+                          enTablesTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenFaucetTeleop-v0                        
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenOvenTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenTrashCanTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPickAndPlaceAndHugC                        
+                          ontainerTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPushOfficeChairTele                        
+                          op-v0 were disabled as they                           
+                          are not contained in all the                          
+                          other datasets.                                       
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyTabletopGraspMP-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMoveBendPickTeleop                        
+                          -v0 were disabled as they are                         
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMovePickTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+[23:51:16 09/02] WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendHandoverTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickMP-v0 were                         
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyCloseDoorTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyHandoverTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyLocomotionPickBetwe                        
+                          enTablesTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenFaucetTeleop-v0                        
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenOvenTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenTrashCanTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPickAndPlaceAndHugC                        
+                          ontainerTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPushOfficeChairTele                        
+                          op-v0 were disabled as they                           
+                          are not contained in all the                          
+                          other datasets.                                       
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyTabletopGraspMP-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMoveBendPickTeleop                        
+                          -v0 were disabled as they are                         
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMovePickTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 INFO     | >>     |=> Num training samples:        train.py:192
+                 INFO     | >>         |=> Training dataset size:   train.py:193
+                          420,705                                               
+                 INFO     | >>         |=> Val dataset size: 22,507 train.py:195
+                 INFO     | >> [*] Initialize optimizers and        train.py:198
+                          schedulers...                                         
+                 INFO     | >> [*] ***** Running training *****     train.py:202
+                 INFO     | >>     |=> Num training examples =      train.py:203
+                          420705                                                
+                 INFO     | >>     |=> Max training Epochs = 13     train.py:204
+                 INFO     | >>         |=> Total optimization steps train.py:205
+                          = 40000                                               
+                 INFO     | >>         |=> Num steps Per Epoch =    train.py:206
+                          3287                                                  
+                 INFO     | >>         |=> Effective training       train.py:207
+                          epochs = 97.35                                        
+                 INFO     | >>     |=> Global train batch size (w.  train.py:208
+                          parallel, distributed & accumulation) =               
+                          128                                                   
+                 INFO     | >>         |=> Device train batch size  train.py:209
+                          = 16                                                  
+                 INFO     | >>         |=> Gradient Accumulation    train.py:210
+                          steps = 1                                             
+                 INFO     | >>         |=> Num processes (GPUs) = 8 train.py:211
+[23:51:18 09/02] WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendHandoverTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickMP-v0 were                         
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyCloseDoorTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyHandoverTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyLocomotionPickBetwe                        
+                          enTablesTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenFaucetTeleop-v0                        
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenOvenTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenTrashCanTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPickAndPlaceAndHugC                        
+                          ontainerTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPushOfficeChairTele                        
+                          op-v0 were disabled as they                           
+                          are not contained in all the                          
+                          other datasets.                                       
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyTabletopGraspMP-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMoveBendPickTeleop                        
+                          -v0 were disabled as they are                         
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMovePickTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+[23:51:18 09/02] WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendHandoverTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickMP-v0 were                         
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyCloseDoorTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyHandoverTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyLocomotionPickBetwe                        
+                          enTablesTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenFaucetTeleop-v0                        
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenOvenTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenTrashCanTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPickAndPlaceAndHugC                        
+                          ontainerTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPushOfficeChairTele                        
+                          op-v0 were disabled as they                           
+                          are not contained in all the                          
+                          other datasets.                                       
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyTabletopGraspMP-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMoveBendPickTeleop                        
+                          -v0 were disabled as they are                         
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMovePickTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+[23:51:18 09/02] WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendHandoverTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickMP-v0 were                         
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyCloseDoorTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyHandoverTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyLocomotionPickBetwe                        
+                          enTablesTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenFaucetTeleop-v0                        
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenOvenTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenTrashCanTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPickAndPlaceAndHugC                        
+                          ontainerTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPushOfficeChairTele                        
+                          op-v0 were disabled as they                           
+                          are not contained in all the                          
+                          other datasets.                                       
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyTabletopGraspMP-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMoveBendPickTeleop                        
+                          -v0 were disabled as they are                         
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMovePickTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+[23:51:18 09/02] WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendHandoverTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickMP-v0 were                         
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyCloseDoorTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyHandoverTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyLocomotionPickBetwe                        
+                          enTablesTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenFaucetTeleop-v0                        
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenOvenTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenTrashCanTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPickAndPlaceAndHugC                        
+                          ontainerTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPushOfficeChairTele                        
+                          op-v0 were disabled as they                           
+                          are not contained in all the                          
+                          other datasets.                                       
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyTabletopGraspMP-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMoveBendPickTeleop                        
+                          -v0 were disabled as they are                         
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMovePickTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+[23:51:18 09/02] WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendHandoverTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickMP-v0 were                         
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyCloseDoorTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyHandoverTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyLocomotionPickBetwe                        
+                          enTablesTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenFaucetTeleop-v0                        
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenOvenTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenTrashCanTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPickAndPlaceAndHugC                        
+                          ontainerTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPushOfficeChairTele                        
+                          op-v0 were disabled as they                           
+                          are not contained in all the                          
+                          other datasets.                                       
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyTabletopGraspMP-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMoveBendPickTeleop                        
+                          -v0 were disabled as they are                         
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMovePickTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+[23:51:20 09/02] WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendHandoverTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickMP-v0 were                         
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyCloseDoorTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyHandoverTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyLocomotionPickBetwe                        
+                          enTablesTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenFaucetTeleop-v0                        
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenOvenTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+[23:51:20 09/02] WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendHandoverTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenTrashCanTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickMP-v0 were                         
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPickAndPlaceAndHugC                        
+                          ontainerTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPushOfficeChairTele                        
+                          op-v0 were disabled as they                           
+                          are not contained in all the                          
+                          other datasets.                                       
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyCloseDoorTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyTabletopGraspMP-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyHandoverTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMoveBendPickTeleop                        
+                          -v0 were disabled as they are                         
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyLocomotionPickBetwe                        
+                          enTablesTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMovePickTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenFaucetTeleop-v0                        
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenOvenTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenTrashCanTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPickAndPlaceAndHugC                        
+                          ontainerTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPushOfficeChairTele                        
+                          op-v0 were disabled as they                           
+                          are not contained in all the                          
+                          other datasets.                                       
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyTabletopGraspMP-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMoveBendPickTeleop                        
+                          -v0 were disabled as they are                         
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMovePickTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+[23:51:20 09/02] WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendHandoverTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickMP-v0 were                         
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyCloseDoorTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyHandoverTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyLocomotionPickBetwe                        
+                          enTablesTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenFaucetTeleop-v0                        
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenOvenTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenTrashCanTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPickAndPlaceAndHugC                        
+                          ontainerTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPushOfficeChairTele                        
+                          op-v0 were disabled as they                           
+                          are not contained in all the                          
+                          other datasets.                                       
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyTabletopGraspMP-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMoveBendPickTeleop                        
+                          -v0 were disabled as they are                         
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMovePickTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+[23:51:21 09/02] WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendHandoverTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickMP-v0 were                         
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyBendPickTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyCloseDoorTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyHandoverTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyLocomotionPickBetwe                        
+                          enTablesTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenFaucetTeleop-v0                        
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenOvenTeleop-v0                          
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyOpenTrashCanTeleop-                        
+                          v0 were disabled as they are                          
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPickAndPlaceAndHugC                        
+                          ontainerTeleop-v0 were                                
+                          disabled as they are not                              
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyPushOfficeChairTele                        
+                          op-v0 were disabled as they                           
+                          are not contained in all the                          
+                          other datasets.                                       
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyTabletopGraspMP-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMoveBendPickTeleop                        
+                          -v0 were disabled as they are                         
+                          not contained in all the other                        
+                          datasets.                                             
+                 WARNING  | >> keys set() of             lerobot_dataset.py:1104
+                          G1WholebodyXMovePickTeleop-v0                         
+                          were disabled as they are not                         
+                          contained in all the other                            
+                          datasets.                                             
+[23:51:25 09/02] INFO     | >> [*] Accelerator runs in:             train.py:218
+                          .runs/finetune/simple-14tasks.simple.flow             
+                          1000.cosine.lr1.0e-04.b128.gpus8.26090223             
+                          50                                                    
+Training steps:   0%|          | 0/40000 [00:00<?, ?it/s]/mnt/nas26/kerou.zhang/robotics/Psi0/.venv/lib/python3.10/site-packages/torch/autograd/graph.py:824: UserWarning: Memory Efficient attention defaults to a non-deterministic algorithm. To explicitly enable determinism call torch.use_deterministic_algorithms(True, warn_only=False). (Triggered internally at /pytorch/aten/src/ATen/native/transformers/cuda/attention_backward.cu:752.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+/mnt/nas26/kerou.zhang/robotics/Psi0/.venv/lib/python3.10/site-packages/torch/autograd/graph.py:824: UserWarning: Memory Efficient attention defaults to a non-deterministic algorithm. To explicitly enable determinism call torch.use_deterministic_algorithms(True, warn_only=False). (Triggered internally at /pytorch/aten/src/ATen/native/transformers/cuda/attention_backward.cu:752.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+/mnt/nas26/kerou.zhang/robotics/Psi0/.venv/lib/python3.10/site-packages/torch/autograd/graph.py:824: UserWarning: Memory Efficient attention defaults to a non-deterministic algorithm. To explicitly enable determinism call torch.use_deterministic_algorithms(True, warn_only=False). (Triggered internally at /pytorch/aten/src/ATen/native/transformers/cuda/attention_backward.cu:752.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+/mnt/nas26/kerou.zhang/robotics/Psi0/.venv/lib/python3.10/site-packages/torch/autograd/graph.py:824: UserWarning: Memory Efficient attention defaults to a non-deterministic algorithm. To explicitly enable determinism call torch.use_deterministic_algorithms(True, warn_only=False). (Triggered internally at /pytorch/aten/src/ATen/native/transformers/cuda/attention_backward.cu:752.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+/mnt/nas26/kerou.zhang/robotics/Psi0/.venv/lib/python3.10/site-packages/torch/autograd/graph.py:824: UserWarning: Memory Efficient attention defaults to a non-deterministic algorithm. To explicitly enable determinism call torch.use_deterministic_algorithms(True, warn_only=False). (Triggered internally at /pytorch/aten/src/ATen/native/transformers/cuda/attention_backward.cu:752.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+/mnt/nas26/kerou.zhang/robotics/Psi0/.venv/lib/python3.10/site-packages/torch/autograd/graph.py:824: UserWarning: Memory Efficient attention defaults to a non-deterministic algorithm. To explicitly enable determinism call torch.use_deterministic_algorithms(True, warn_only=False). (Triggered internally at /pytorch/aten/src/ATen/native/transformers/cuda/attention_backward.cu:752.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+/mnt/nas26/kerou.zhang/robotics/Psi0/.venv/lib/python3.10/site-packages/torch/autograd/graph.py:824: UserWarning: Memory Efficient attention defaults to a non-deterministic algorithm. To explicitly enable determinism call torch.use_deterministic_algorithms(True, warn_only=False). (Triggered internally at /pytorch/aten/src/ATen/native/transformers/cuda/attention_backward.cu:752.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+/mnt/nas26/kerou.zhang/robotics/Psi0/.venv/lib/python3.10/site-packages/torch/autograd/graph.py:824: UserWarning: Memory Efficient attention defaults to a non-deterministic algorithm. To explicitly enable determinism call torch.use_deterministic_algorithms(True, warn_only=False). (Triggered internally at /pytorch/aten/src/ATen/native/transformers/cuda/attention_backward.cu:752.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[2026-09-02 23:51:45,890] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2026-09-02 23:51:45,908] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2026-09-02 23:51:46,127] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[23:51:46 09/02] INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          -Wno-unused-result -Wsign-compare -DNDEBUG            
+                          -fwrapv -O2 -Wall -fPIC -O2 -isystem                  
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -O2               
+                          -isystem                                              
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -c                
+                          /tmp/tmpwkwmesp_/test.c -o                            
+                          /tmp/tmpwkwmesp_/test.o                               
+[23:51:46 09/02] INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          -Wno-unused-result -Wsign-compare -DNDEBUG            
+                          -fwrapv -O2 -Wall -fPIC -O2 -isystem                  
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -O2               
+                          -isystem                                              
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -c                
+                          /tmp/tmptp99_ry4/test.c -o                            
+                          /tmp/tmptp99_ry4/test.o                               
+[2026-09-02 23:51:46,176] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2026-09-02 23:51:46,256] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2026-09-02 23:51:46,273] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[23:51:46 09/02] INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          -Wno-unused-result -Wsign-compare -DNDEBUG            
+                          -fwrapv -O2 -Wall -fPIC -O2 -isystem                  
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -O2               
+                          -isystem                                              
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -c                
+                          /tmp/tmpymgrbsme/test.c -o                            
+                          /tmp/tmpymgrbsme/test.o                               
+[2026-09-02 23:51:46,286] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2026-09-02 23:51:46,292] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+                 INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          /tmp/tmpwkwmesp_/test.o -laio -o                      
+                          /tmp/tmpwkwmesp_/a.out                                
+                 INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          /tmp/tmptp99_ry4/test.o -laio -o                      
+                          /tmp/tmptp99_ry4/a.out                                
+                 INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          /tmp/tmpymgrbsme/test.o -laio -o                      
+                          /tmp/tmpymgrbsme/a.out                                
+[23:51:46 09/02] INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          -Wno-unused-result -Wsign-compare -DNDEBUG            
+                          -fwrapv -O2 -Wall -fPIC -O2 -isystem                  
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -O2               
+                          -isystem                                              
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -c                
+                          /tmp/tmpsqmtoecq/test.c -o                            
+                          /tmp/tmpsqmtoecq/test.o                               
+                 INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          /tmp/tmpsqmtoecq/test.o -laio -o                      
+                          /tmp/tmpsqmtoecq/a.out                                
+[23:51:46 09/02] INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          -Wno-unused-result -Wsign-compare -DNDEBUG            
+                          -fwrapv -O2 -Wall -fPIC -O2 -isystem                  
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -O2               
+                          -isystem                                              
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -c                
+                          /tmp/tmpxjicpng9/test.c -o                            
+                          /tmp/tmpxjicpng9/test.o                               
+[23:51:46 09/02] INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          -Wno-unused-result -Wsign-compare -DNDEBUG            
+                          -fwrapv -O2 -Wall -fPIC -O2 -isystem                  
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -O2               
+                          -isystem                                              
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -c                
+                          /tmp/tmprdy0fd7a/test.c -o                            
+                          /tmp/tmprdy0fd7a/test.o                               
+                 INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          /tmp/tmpxjicpng9/test.o -laio -o                      
+                          /tmp/tmpxjicpng9/a.out                                
+[23:51:46 09/02] INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          -Wno-unused-result -Wsign-compare -DNDEBUG            
+                          -fwrapv -O2 -Wall -fPIC -O2 -isystem                  
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -O2               
+                          -isystem                                              
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -c                
+                          /tmp/tmpwlc3pa2v/test.c -o                            
+                          /tmp/tmpwlc3pa2v/test.o                               
+[23:51:46 09/02] INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          -Wno-unused-result -Wsign-compare -DNDEBUG            
+                          -fwrapv -O2 -Wall -fPIC -O2 -isystem                  
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -O2               
+                          -isystem                                              
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -c                
+                          /tmp/tmpr4j9u5uc/test.c -o                            
+                          /tmp/tmpr4j9u5uc/test.o                               
+                 INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          /tmp/tmprdy0fd7a/test.o -laio -o                      
+                          /tmp/tmprdy0fd7a/a.out                                
+                 INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          /tmp/tmpwlc3pa2v/test.o -laio -o                      
+                          /tmp/tmpwlc3pa2v/a.out                                
+                 INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          /tmp/tmpr4j9u5uc/test.o -laio -o                      
+                          /tmp/tmpr4j9u5uc/a.out                                
+                 INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          -Wno-unused-result -Wsign-compare -DNDEBUG            
+                          -fwrapv -O2 -Wall -fPIC -O2 -isystem                  
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -O2               
+                          -isystem                                              
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -c                
+                          /tmp/tmpihnzjb8v/test.c -o                            
+                          /tmp/tmpihnzjb8v/test.o                               
+                 INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          /tmp/tmpihnzjb8v/test.o -L/usr                        
+                          -L/usr/lib64 -lcufile -o                              
+                          /tmp/tmpihnzjb8v/a.out                                
+                 INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          -Wno-unused-result -Wsign-compare -DNDEBUG            
+                          -fwrapv -O2 -Wall -fPIC -O2 -isystem                  
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -O2               
+                          -isystem                                              
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -c                
+                          /tmp/tmp78b_vzq8/test.c -o                            
+                          /tmp/tmp78b_vzq8/test.o                               
+                 INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          -Wno-unused-result -Wsign-compare -DNDEBUG            
+                          -fwrapv -O2 -Wall -fPIC -O2 -isystem                  
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -O2               
+                          -isystem                                              
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -c                
+                          /tmp/tmpabtiom75/test.c -o                            
+                          /tmp/tmpabtiom75/test.o                               
+                 INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          /tmp/tmp78b_vzq8/test.o -L/usr                        
+                          -L/usr/lib64 -lcufile -o                              
+                          /tmp/tmp78b_vzq8/a.out                                
+[23:51:47 09/02] INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          /tmp/tmpabtiom75/test.o -L/usr                        
+                          -L/usr/lib64 -lcufile -o                              
+                          /tmp/tmpabtiom75/a.out                                
+[23:51:47 09/02] INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          -Wno-unused-result -Wsign-compare -DNDEBUG            
+                          -fwrapv -O2 -Wall -fPIC -O2 -isystem                  
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -O2               
+                          -isystem                                              
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -c                
+                          /tmp/tmptrbeiic4/test.c -o                            
+                          /tmp/tmptrbeiic4/test.o                               
+                 INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          /tmp/tmptrbeiic4/test.o -L/usr                        
+                          -L/usr/lib64 -lcufile -o                              
+                          /tmp/tmptrbeiic4/a.out                                
+[23:51:47 09/02] INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          -Wno-unused-result -Wsign-compare -DNDEBUG            
+                          -fwrapv -O2 -Wall -fPIC -O2 -isystem                  
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -O2               
+                          -isystem                                              
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -c                
+                          /tmp/tmpkgg8ao5d/test.c -o                            
+                          /tmp/tmpkgg8ao5d/test.o                               
+[23:51:47 09/02] INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          -Wno-unused-result -Wsign-compare -DNDEBUG            
+                          -fwrapv -O2 -Wall -fPIC -O2 -isystem                  
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -O2               
+                          -isystem                                              
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -c                
+                          /tmp/tmpbnx5wgv8/test.c -o                            
+                          /tmp/tmpbnx5wgv8/test.o                               
+                 INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          /tmp/tmpkgg8ao5d/test.o -L/usr                        
+                          -L/usr/lib64 -lcufile -o                              
+                          /tmp/tmpkgg8ao5d/a.out                                
+                 INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          /tmp/tmpbnx5wgv8/test.o -L/usr                        
+                          -L/usr/lib64 -lcufile -o                              
+                          /tmp/tmpbnx5wgv8/a.out                                
+[23:51:47 09/02] INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          -Wno-unused-result -Wsign-compare -DNDEBUG            
+                          -fwrapv -O2 -Wall -fPIC -O2 -isystem                  
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -O2               
+                          -isystem                                              
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -c                
+                          /tmp/tmpqeaeorw7/test.c -o                            
+                          /tmp/tmpqeaeorw7/test.o                               
+                 INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          /tmp/tmpqeaeorw7/test.o -L/usr                        
+                          -L/usr/lib64 -lcufile -o                              
+                          /tmp/tmpqeaeorw7/a.out                                
+[23:51:47 09/02] INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          -Wno-unused-result -Wsign-compare -DNDEBUG            
+                          -fwrapv -O2 -Wall -fPIC -O2 -isystem                  
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -O2               
+                          -isystem                                              
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/include -fPIC -c                
+                          /tmp/tmp42yc3z9w/test.c -o                            
+                          /tmp/tmp42yc3z9w/test.o                               
+                 INFO     | >> gcc -pthread -B                       spawn.py:77
+                          /mnt/nas26/kerou.zhang/conda_environment/m            
+                          iniconda3/envs/simple/compiler_compat                 
+                          /tmp/tmp42yc3z9w/test.o -L/usr                        
+                          -L/usr/lib64 -lcufile -o                              
+                          /tmp/tmp42yc3z9w/a.out                                
+[2026-09-02 23:51:48,078] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2026-09-02 23:51:48,078] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2026-09-02 23:51:48,078] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2026-09-02 23:51:48,078] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2026-09-02 23:51:48,078] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2026-09-02 23:51:48,079] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2026-09-02 23:51:48,096] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2026-09-02 23:51:48,100] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+
+  0%|          | 0/20 [00:00<?, ?it/s][A
+Eval at global step 0:   0%|          | 0/20 [00:00<?, ?it/s][A[23:51:52 09/02] INFO     | >> PyTorch version 2.7.0 available.     config.py:54
+[23:51:52 09/02] INFO     | >> PyTorch version 2.7.0 available.     config.py:54
+[23:51:52 09/02] INFO     | >> PyTorch version 2.7.0 available.     config.py:54
+[23:51:52 09/02] INFO     | >> PyTorch version 2.7.0 available.     config.py:54
+[23:51:52 09/02] INFO     | >> PyTorch version 2.7.0 available.     config.py:54
+[23:51:52 09/02] INFO     | >> PyTorch version 2.7.0 available.     config.py:54
+[23:51:52 09/02] INFO     | >> PyTorch version 2.7.0 available.     config.py:54
+[23:51:52 09/02] INFO     | >> PyTorch version 2.7.0 available.     config.py:54

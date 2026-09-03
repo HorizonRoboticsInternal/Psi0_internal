@@ -11,6 +11,8 @@ class LerobotDataConfig(DataConfig):
     root_dir: str
     train_repo_ids: List[str] = Field(default_factory=list)
     val_repo_ids: List[str] = Field(default_factory=list)
+    episode_val_ratio: Optional[float] = None
+    episode_split_seed: int = 292285
 
     @model_validator(mode="after")
     def check_repo_ids(self):
@@ -18,6 +20,8 @@ class LerobotDataConfig(DataConfig):
             raise ValueError("train_repo_ids must be provided")
         if len(self.val_repo_ids) == 0:
             self.val_repo_ids = [self.train_repo_ids[0]]
+        if self.episode_val_ratio is not None and not 0 < self.episode_val_ratio < 1:
+            raise ValueError("episode_val_ratio must be in (0, 1)")
         return self
     
     @model_validator(mode="after")
